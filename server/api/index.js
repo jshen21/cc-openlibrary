@@ -14,6 +14,18 @@ router.get('/books', async (req, res, next) => {
   }
 })
 
+//GET /api/books/:bookId
+router.get('/books/:bookId', async(req, res, next) => {
+  const bookId = req.params.bookId
+  try {
+    const response = await axios.get(`https://openlibrary.org/api/books?bibkeys=${bookId}&jscmd=details&format=json`)
+    res.send(response.data)
+  } catch (err) {
+    next(err)
+  }
+})
+
+
 
 
 
