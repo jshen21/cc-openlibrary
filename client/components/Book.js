@@ -5,8 +5,7 @@ const Book = ({ book }) => {
         <div className='book'>     
             <h3>{book.title}</h3>
             <p>by {book.author_name}</p>
-            <p>Editions published: {book.edition_count}</p>
-            <p>First Publish Year: {book.first_publish_year}</p>
+            <small>first published in {book.first_publish_year}</small>
         </div>
     )
 }
