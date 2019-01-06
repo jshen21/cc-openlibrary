@@ -1,7 +1,7 @@
 {
-  "name": "TBD",
+  "name": "cc-openlibrary",
   "version": "1.0.0",
-  "description": "TBD",
+  "description": "A small app that interacts with The Open Library Books API.",
   "engines": {
     "node": ">= 7.0.0"
   },
