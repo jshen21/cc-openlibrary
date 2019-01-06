@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import SearchBox from './components/SearchBox'
-// import Books from './components/Books'
+import Books from './components/Books'
 
 class App extends Component {
   constructor () {
@@ -15,8 +15,7 @@ class App extends Component {
         <h1>SEARCH YOUR FAVORIATE BOOK:</h1>
         <SearchBox />
         { books.length && 
-          <p>Got the books!</p>
-          // <Books books={books}/>
+          <Books books={books}/>
         }
       </div>
     )
