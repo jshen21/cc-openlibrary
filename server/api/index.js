@@ -1,7 +1,18 @@
 const router = require('express').Router()
+const axios = require('axios')
 module.exports = router
 
-//api routes here
+//GET /api/books
+router.get('/books', async (req, res, next) => {
+  const searchSelect = req.query.searchSelect
+  const searchInput = req.query.searchInput
+  try {
+    const response = await axios.get(`http://openlibrary.org/search.json?${searchSelect}=${searchInput}`)
+    res.send(response.data.docs)
+  } catch (err) {
+    next(err)
+  }
+})
 
 
 
