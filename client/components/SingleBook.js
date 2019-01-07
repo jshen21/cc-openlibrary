@@ -5,10 +5,7 @@ import { checkBookId, convertBookcoverId } from '../utils-client'
 
 
 const SingleBook = ({ singleBook, clearBook }) => {
-    console.log('SingleBook', singleBook)
-    console.log('ID-----',checkBookId(singleBook))
     const bookId = convertBookcoverId(checkBookId(singleBook))
-    console.log("BOOKID", bookId)
     return (
         <div>
             <nav>

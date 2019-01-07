@@ -3,13 +3,13 @@ import { Card } from 'semantic-ui-react'
 import { checkBookId } from '../utils-client'
 
 const Book = ({ book, pickBook }) => {
-    console.log('Book----',book)
     return (
-        <Card onClick={() => {(pickBook && checkBookId(book)) ? pickBook(checkBookId(book)): alert('No found')}}>
+        <Card onClick={() => {(pickBook && checkBookId(book)) ? pickBook(checkBookId(book)): alert('Not found')}}>
             <Card.Content>           
                 <Card.Header>{book.title}</Card.Header>
                 <Card.Meta>by {book.author_name}</Card.Meta>
                 <Card.Meta>first published in {book.first_publish_year}</Card.Meta> 
+                <Card.Meta>editions: {book.edition_count}</Card.Meta>
             </Card.Content>      
         </Card>
     )

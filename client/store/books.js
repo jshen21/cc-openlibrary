@@ -7,6 +7,7 @@ import axios from 'axios'
 const REQUEST_BOOKS_PENDING = 'REQUEST_BOOKS_PENDING'
 const REQUEST_BOOKS_SUCCESS = 'REQUEST_BOOKS_SUCCESS'
 const REQUEST_BOOKS_FAILED = 'REQUEST_BOOKS_FAILED'
+const BOOKS_SORT = 'BOOKS_SORT'
 
 
 /**
@@ -23,6 +24,7 @@ const defaultBooksState = {
 const setRequestBooksPending = () => ({type: REQUEST_BOOKS_PENDING})
 const setRequestBooksSuccess = books => ({type: REQUEST_BOOKS_SUCCESS, books})
 const setRequestBooksFail = error => ({type: REQUEST_BOOKS_FAILED, error})
+export const setSortedBooks = books => ({type: BOOKS_SORT, books})
 
 /**
  * THUNK CREATORS
@@ -49,6 +51,8 @@ export default function(state = defaultBooksState, action) {
         return {...state, books: action.books, isBooksPending: false}
     case REQUEST_BOOKS_FAILED:
         return {...state, error: action.error}
+    case BOOKS_SORT:
+        return {...state, books: action.books}
     default:
         return state
   }

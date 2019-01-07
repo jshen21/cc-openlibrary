@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import SearchBox from './components/SearchBox'
+import BooksSort from './components/BooksSort'
 import Books from './components/Books'
 import SingleBook from './components/SingleBook'
 import { requestBook, clearBook } from './store'
@@ -30,6 +31,7 @@ class App extends Component {
           : (
             <div>
               <SearchBox />
+              <BooksSort />
               <Books books={books} pickBook={this.pickBook} />
             </div>
           )
