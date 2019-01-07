@@ -14,7 +14,7 @@ const REQUEST_BOOK_FAILED = 'REQUEST_BOOK_FAILED'
  */
 const defaultSingleBookState = {
     singleBook: {},
-    isPending: true
+    isSingleBookPending: true
 }
 
 /**
@@ -44,9 +44,9 @@ export const requestBook = (bookId) => async dispatch => {
 export default function(state = defaultSingleBookState, action) {
   switch (action.type) {
     case REQUEST_BOOK_PENDING:
-        return {...state, isPending: true}
+        return {...state, isSingleBookPending: true}
     case REQUEST_BOOK_SUCCESS:
-        return {...state, singleBook: action.book, isPending: false}
+        return {...state, singleBook: action.book, isSingleBookPending: false}
     case REQUEST_BOOK_FAILED:
         return {...state, error: action.error}
     default:
