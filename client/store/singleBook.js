@@ -7,6 +7,7 @@ import axios from 'axios'
 const REQUEST_BOOK_PENDING = 'REQUEST_BOOK_PENDING'
 const REQUEST_BOOK_SUCCESS = 'REQUEST_BOOK_SUCCESS'
 const REQUEST_BOOK_FAILED = 'REQUEST_BOOK_FAILED'
+const CLEAR_BOOK = 'CLEAR_BOOK'
 
 
 /**
@@ -14,7 +15,7 @@ const REQUEST_BOOK_FAILED = 'REQUEST_BOOK_FAILED'
  */
 const defaultSingleBookState = {
     singleBook: {},
-    isPending: true
+    isSingleBookPending: true
 }
 
 /**
@@ -23,6 +24,7 @@ const defaultSingleBookState = {
 const setRequestBookPending = () => ({type: REQUEST_BOOK_PENDING})
 const setRequestBookSuccess = book => ({type: REQUEST_BOOK_SUCCESS, book})
 const setRequestBookFail = error => ({type: REQUEST_BOOK_FAILED, error})
+export const clearBook = () => ({type: CLEAR_BOOK})
 
 /**
  * THUNK CREATORS
@@ -31,7 +33,8 @@ export const requestBook = (bookId) => async dispatch => {
     dispatch(setRequestBookPending)
   try {
     const data = await axios.get(`/api/books/${bookId}`)
-    dispatch(setRequestBookSuccess(data.data))
+    console.log("DATA", data.data[bookId].details)
+    dispatch(setRequestBookSuccess(data.data[bookId].details))
   } catch (error) {
     dispatch(setRequestBookFail(error))
   }
@@ -44,11 +47,13 @@ export const requestBook = (bookId) => async dispatch => {
 export default function(state = defaultSingleBookState, action) {
   switch (action.type) {
     case REQUEST_BOOK_PENDING:
-        return {...state, isPending: true}
+        return {...state, isSingleBookPending: true}
     case REQUEST_BOOK_SUCCESS:
-        return {...state, singleBook: action.book, isPending: false}
+        return {...state, singleBook: action.book, isSingleBookPending: false}
     case REQUEST_BOOK_FAILED:
         return {...state, error: action.error}
+    case CLEAR_BOOK:
+        return {...state, singleBook: {}}
     default:
         return state
   }

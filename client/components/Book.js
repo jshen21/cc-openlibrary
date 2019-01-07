@@ -1,12 +1,17 @@
 import React from 'react'
+import { Card } from 'semantic-ui-react'
+import { checkBookId } from '../utils-client'
 
-const Book = ({ book }) => {
+const Book = ({ book, pickBook }) => {
+    console.log('Book----',book)
     return (
-        <div className='book'>     
-            <h3>{book.title}</h3>
-            <p>by {book.author_name}</p>
-            <small>first published in {book.first_publish_year}</small>
-        </div>
+        <Card onClick={() => {(pickBook && checkBookId(book)) ? pickBook(checkBookId(book)): alert('No found')}}>
+            <Card.Content>           
+                <Card.Header>{book.title}</Card.Header>
+                <Card.Meta>by {book.author_name}</Card.Meta>
+                <Card.Meta>first published in {book.first_publish_year}</Card.Meta> 
+            </Card.Content>      
+        </Card>
     )
 }
 

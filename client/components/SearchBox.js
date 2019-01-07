@@ -46,6 +46,6 @@ const mapDispatch = dispatch => {
     return {
       requestBooks: (searchSelect, searchInput) => dispatch(requestBooks(searchSelect, searchInput)) 
     }
-  }
+}
 
 export default connect (null, mapDispatch)(SearchBox)
