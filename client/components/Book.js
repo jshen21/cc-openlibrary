@@ -3,7 +3,7 @@ import { Card } from 'semantic-ui-react'
 import { checkBookId } from '../utils-client'
 
 const Book = ({ book, pickBook }) => {
-    console.log('BookId----',checkBookId(book))
+    console.log('Book----',book)
     return (
         <Card onClick={() => {(pickBook && checkBookId(book)) ? pickBook(checkBookId(book)): alert('No found')}}>
             <Card.Content>           

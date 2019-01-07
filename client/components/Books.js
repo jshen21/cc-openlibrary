@@ -7,7 +7,7 @@ const Books = ({ books, pickBook }) => {
         <div>
             <Item.Group divided>
                 {
-                    books.map((book, i) =>
+                    books.filter(book=> book.author_name).map((book, i) =>
                         <Book book={book} pickBook={pickBook} key={i} />
                     )
                 }
