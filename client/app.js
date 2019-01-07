@@ -17,13 +17,11 @@ class App extends Component {
   }
 
   clearBook (event) {
-    console.log('HIT')
     this.props.clearBook()
   }
 
   render() {
     const { books, singleBook } = this.props
-    console.log('App.js', singleBook)
     return (
       <div>
         { 
@@ -43,7 +41,6 @@ class App extends Component {
 
 //parameter state comes from client/index.js provider store state
 const mapState = state => {
-  console.log("STATE", state)
   return {
     books:state.books.books,
     singleBook: state.singleBook.singleBook,

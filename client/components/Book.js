@@ -1,22 +1,9 @@
 import React from 'react'
 import { Card } from 'semantic-ui-react'
-
-const checkBookId = (book) => {
-    if (book.isbn && book.isbn.length) {
-        return `ISBN:${book.isbn[0]}`
-    } else if (book.oclc && book.oclc.length) {
-        return `OCLC:${book.oclc[0]}`
-    } else if (book.lccn && book.lccn.length) {
-        return `LCCN:${book.lccn[0]}`
-    } else if (book.olid && book.olid.length) {
-        return `OLID:${book.olid[0]}`
-    } else {
-        return false
-    }
-}
-
+import { checkBookId } from '../utils-client'
 
 const Book = ({ book, pickBook }) => {
+    console.log('BookId----',checkBookId(book))
     return (
         <Card onClick={() => {(pickBook && checkBookId(book)) ? pickBook(checkBookId(book)): alert('No found')}}>
             <Card.Content>           
