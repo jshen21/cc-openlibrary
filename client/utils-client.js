@@ -1,10 +1,10 @@
 export const checkBookId = (book) => {
-    const typeId = ['ISBN', 'OCLC', 'LCCN', 'OLID']
+    const typeId = ['isbn', 'oclc', 'lccn', 'olid']
     const keys = Object.keys(book)
     for (let i = 0; i < keys.length; i++) {
         for(let j = 0; j < typeId.length; j++) {
             if(keys[i].includes(typeId[j])) {
-                return `${keys[i]}:${book[keys[i]][0]}`
+                return `${keys[i].toUpperCase()}:${book[keys[i]][0]}`
             }
         }
     }

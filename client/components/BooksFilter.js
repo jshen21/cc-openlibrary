@@ -14,7 +14,7 @@ class BooksSort extends Component {
 
     async handleChange (event) {
         try {
-            //update component state whenever filterSelect changes, setState is asynchronous
+            //Update component state whenever filterSelect changes, setState is asynchronous
             await this.setState({filterSelect: event.target.value})
             //Make a copy of the books for sorting to avoid mutating the state
             const books = [...this.props.books]
@@ -33,7 +33,7 @@ class BooksSort extends Component {
         const { filterSelect } = this.state
         const publishYears = getPublishYear(books)
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form>
                 <select name='booksFilter' value={filterSelect} onChange={this.handleChange}>
                     <option value='All'>All</option>
                     {
