@@ -14,6 +14,7 @@ export class SearchBox extends Component {
     }
 
     handleChange (event) {
+        console.log('Hit',event.target.value)
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -29,15 +30,24 @@ export class SearchBox extends Component {
     render () {
         const { searchSelect, searchInput } = this.state
         return (
-            <form onSubmit={this.handleSubmit}>
-                <select name='searchSelect' value={searchSelect} onChange={this.handleChange}>
-                    <option value="q">All</option>
-                    <option value="title">Title</option>
-                    <option value="author">Author</option>
-                </select>
-                <input type='text' name='searchInput' value={searchInput} onChange={this.handleChange} />   
-                <button type="submit">Search</button>
-            </form>
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                    <select name='searchSelect' value={searchSelect} onChange={this.handleChange}>
+                        <option value="q">All</option>
+                        <option value="title">Title</option>
+                        <option value="author">Author</option>
+                    </select>
+                    <div>
+                        <input 
+                            type='text' 
+                            name='searchInput' 
+                            value={searchInput} 
+                            onChange={this.handleChange}
+                            placeholder='Search books...' />  
+                        <button type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
         )
     }
 }

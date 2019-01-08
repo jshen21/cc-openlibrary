@@ -5,7 +5,7 @@ import { Dimmer } from 'semantic-ui-react'
 const Loading = () => {
     return (
         <Dimmer active>
-            <div id='loaderContainer'>
+            <div className='center'>
                 <div className='loader'></div>
             </div>  
             <label>Loading...</label>
