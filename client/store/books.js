@@ -8,6 +8,8 @@ const REQUEST_BOOKS_PENDING = 'REQUEST_BOOKS_PENDING'
 const REQUEST_BOOKS_SUCCESS = 'REQUEST_BOOKS_SUCCESS'
 const REQUEST_BOOKS_FAILED = 'REQUEST_BOOKS_FAILED'
 const BOOKS_SORT = 'BOOKS_SORT'
+const BOOKS_FILTER = 'BOOKS_FILTER'
+const CLEAR_FILTEREDBOOKS = 'CLEAR_FILTEREDBOOKS'
 
 
 /**
@@ -15,6 +17,7 @@ const BOOKS_SORT = 'BOOKS_SORT'
  */
 const defaultBooksState = {
     books: [],
+    filteredBooks: [],
     isBooksPending: true
 }
 
@@ -25,6 +28,8 @@ const setRequestBooksPending = () => ({type: REQUEST_BOOKS_PENDING})
 const setRequestBooksSuccess = books => ({type: REQUEST_BOOKS_SUCCESS, books})
 const setRequestBooksFail = error => ({type: REQUEST_BOOKS_FAILED, error})
 export const setSortedBooks = books => ({type: BOOKS_SORT, books})
+export const setFilteredBooks = books => ({type: BOOKS_FILTER, books})
+export const clearFilteredBooks = () => ({type: CLEAR_FILTEREDBOOKS})
 
 /**
  * THUNK CREATORS
@@ -53,6 +58,10 @@ export default function(state = defaultBooksState, action) {
         return {...state, error: action.error}
     case BOOKS_SORT:
         return {...state, books: action.books}
+    case BOOKS_FILTER:
+        return {...state, filteredBooks: action.books}
+    case CLEAR_FILTEREDBOOKS:
+        return {...state, filteredBooks: []}
     default:
         return state
   }
