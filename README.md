@@ -1,6 +1,6 @@
 # Open Library Books API
 
-This app was created in response to a code challenge described here (https://gist.github.com/gooptaa/b5bf13cbd4c7b00bfacd7d0335423cb2). It is deployed at https://cc-openlibrary.herokuapp.com/.
+This app was created in response to a code challenge described [here] (https://gist.github.com/gooptaa/b5bf13cbd4c7b00bfacd7d0335423cb2). It is deployed [here] https://cc-openlibrary.herokuapp.com/.
 
 
 For this challenge, I made AJAX requests to Open Library Books API to get the data to generate the React components. 
