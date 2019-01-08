@@ -5,6 +5,7 @@ import BooksSort from './components/BooksSort'
 import BooksFilter from './components/BooksFilter'
 import Books from './components/Books'
 import SingleBook from './components/SingleBook'
+import Loading from './components/Loading'
 
 import { requestBook, clearBook } from './store'
 
@@ -24,24 +25,31 @@ class App extends Component {
   }
 
   render() {
-    const { books, singleBook, filteredBooks } = this.props
+    const { books, singleBook, filteredBooks, isBooksPending, isSingleBookPending } = this.props
     return (
       <div>
         { 
-          Object.keys(singleBook).length 
-          ? <SingleBook singleBook={singleBook} clearBook={this.clearBook} />
-          : (
-            <div>
-              <SearchBox />
-              <BooksSort />
-              <BooksFilter />
-              {
-                filteredBooks.length 
-                ? <Books books={filteredBooks} pickBook={this.pickBook} />
-                : <Books books={books} pickBook={this.pickBook} /> 
-              }
-            </div>
-          )
+          isSingleBookPending
+            ? <Loading /> 
+            : (
+              Object.keys(singleBook).length 
+                ? <SingleBook singleBook={singleBook} clearBook={this.clearBook} />
+                : (
+                    <div>
+                      <SearchBox />
+                      <BooksSort />
+                      <BooksFilter />
+                      { 
+                        isBooksPending && <Loading />
+                      }
+                      {
+                        filteredBooks.length 
+                        ? <Books books={filteredBooks} pickBook={this.pickBook} />
+                        : <Books books={books} pickBook={this.pickBook} /> 
+                      }
+                    </div>
+                  )
+              )
         }
       </div>
     )
@@ -53,9 +61,9 @@ const mapState = state => {
   return {
     books:state.books.books,
     singleBook: state.singleBook.singleBook,
-    filteredBooks: state.books.filteredBooks
-    // isBooksPending: state.books.isBooksPending,
-    // isSingleBookPending: state.singleBook.isSingleBookPending
+    filteredBooks: state.books.filteredBooks,
+    isBooksPending: state.books.isBooksPending,
+    isSingleBookPending: state.singleBook.isSingleBookPending
   }
 }
 

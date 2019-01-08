@@ -15,7 +15,7 @@ const CLEAR_BOOK = 'CLEAR_BOOK'
  */
 const defaultSingleBookState = {
     singleBook: {},
-    isSingleBookPending: true
+    isSingleBookPending: false
 }
 
 /**
@@ -30,10 +30,9 @@ export const clearBook = () => ({type: CLEAR_BOOK})
  * THUNK CREATORS
  */
 export const requestBook = (bookId) => async dispatch => {
-    dispatch(setRequestBookPending)
+    dispatch(setRequestBookPending())
   try {
     const data = await axios.get(`/api/books/${bookId}`)
-    console.log("DATA", data.data[bookId].details)
     dispatch(setRequestBookSuccess(data.data[bookId].details))
   } catch (error) {
     dispatch(setRequestBookFail(error))
