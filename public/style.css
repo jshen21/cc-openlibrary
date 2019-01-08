@@ -1,3 +1,4 @@
+/* tags */
 body {
   font-family: sans-serif;
 }
@@ -20,6 +21,12 @@ form div {
   display: inline-block;
 }
 
+/* classes */
+.center {
+  display: flex;
+  justify-content: center;
+}
+
 .loader {
   border: 16px solid #f3f3f3;
   border-top: 16px solid turquoise;
@@ -28,11 +35,6 @@ form div {
   height: 120px;
   animation: spin 1s linear infinite;
   margin-bottom: 15px;
-}
-
-#loaderContainer{
-  display: flex;
-  justify-content: center;
 }
 
 @keyframes spin {

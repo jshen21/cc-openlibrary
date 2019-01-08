@@ -36,9 +36,13 @@ class App extends Component {
                 ? <SingleBook singleBook={singleBook} clearBook={this.clearBook} />
                 : (
                     <div>
-                      <SearchBox />
-                      <BooksSort />
-                      <BooksFilter />
+                      <div className='center'>
+                        <SearchBox />
+                      </div>
+                      <div className='center'>
+                        <BooksSort />
+                        <BooksFilter />
+                      </div>
                       { 
                         isBooksPending && <Loading />
                       }
