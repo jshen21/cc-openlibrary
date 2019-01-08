@@ -18,7 +18,7 @@ const CLEAR_FILTEREDBOOKS = 'CLEAR_FILTEREDBOOKS'
 const defaultBooksState = {
     books: [],
     filteredBooks: [],
-    isBooksPending: true
+    isBooksPending: false
 }
 
 /**
@@ -35,7 +35,7 @@ export const clearFilteredBooks = () => ({type: CLEAR_FILTEREDBOOKS})
  * THUNK CREATORS
  */
 export const requestBooks = (searchSelect, searchInput) => async dispatch => {
-    dispatch(setRequestBooksPending)
+    dispatch(setRequestBooksPending())
   try {
     const data = await axios.get(`/api/books?searchSelect=${searchSelect}&searchInput=${searchInput}`)
     dispatch(setRequestBooksSuccess(data.data))
