@@ -30,11 +30,14 @@ class BooksSort extends Component {
         const { sortSelect } = this.state
         return (
             <form>
-                <select name='booksSort' value={sortSelect} onChange={this.handleChange}>
-                    <option value="">--</option>
-                    <option value="edition_count">Number of Editions</option>
-                    <option value="first_publish_year">Published Year</option>
-                </select>
+                <label>
+                    Sort by
+                    <select name='booksSort' value={sortSelect} onChange={this.handleChange}>
+                        <option value="">--</option>
+                        <option value="edition_count">Number of Editions</option>
+                        <option value="first_publish_year">Published Year</option>
+                    </select>
+                </label>
             </form>
         )
     }

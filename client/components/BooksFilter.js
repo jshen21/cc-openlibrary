@@ -34,16 +34,19 @@ class BooksSort extends Component {
         const publishYears = getPublishYear(books)
         return (
             <form>
-                <select name='booksFilter' value={filterSelect} onChange={this.handleChange}>
-                    <option value='All'>All</option>
-                    {
-                        publishYears.map((year, i) => {
-                            return (
-                                <option key={i} value={year}>Year {year}</option>
-                            )
-                        })
-                    }
-                </select>
+                <label>
+                    Filter by
+                    <select name='booksFilter' value={filterSelect} onChange={this.handleChange}>
+                        <option value='All'>All</option>
+                        {
+                            publishYears.map((year, i) => {
+                                return (
+                                    <option key={i} value={year}>Year {year}</option>
+                                )
+                            })
+                        }
+                    </select>
+                </label>
             </form>
         )
     }
