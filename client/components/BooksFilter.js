@@ -6,28 +6,26 @@ import { getPublishYear } from '../utils-client'
 class BooksSort extends Component {
     constructor () {
         super()
-        this.state = {
-            filterSelect: ''
-        }
+        this.state = {filterSelect: ''}
+
+        // This binding is necessary to make `this` work in the callback
         this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    handleChange (event) {
-        this.setState({
-            filterSelect: event.target.value
-        })
-    }
-    
-    handleSubmit (event) {
-        event.preventDefault();
-        //Make a copy of the books for sorting to avoid mutating the state
-        const books = [...this.props.books]
-        //Clear the previous filteredBooks in the state before executing books filter
-        this.props.clearFilteredBooks()
-        if (this.state.filterSelect === 'All') return;
-        const filteredBooks = books.filter(book => book.first_publish_year === Number(this.state.filterSelect))
-        this.props.setFilteredBooks(filteredBooks)
+    async handleChange (event) {
+        try {
+            //update component state whenever filterSelect changes, setState is asynchronous
+            await this.setState({filterSelect: event.target.value})
+            //Make a copy of the books for sorting to avoid mutating the state
+            const books = [...this.props.books]
+            //Clear the previous filteredBooks in the state before executing a filtering action
+            this.props.clearFilteredBooks()
+            if (this.state.filterSelect === 'All') return;
+            const filteredBooks = books.filter(book => book.first_publish_year === Number(this.state.filterSelect))
+            this.props.setFilteredBooks(filteredBooks)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     render () {
@@ -46,7 +44,6 @@ class BooksSort extends Component {
                         })
                     }
                 </select>
-                <input type="submit" value="Submit" />   
             </form>
         )
     }
