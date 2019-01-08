@@ -24,9 +24,9 @@ const defaultBooksState = {
 /**
  * ACTION CREATORS
  */
-const setRequestBooksPending = () => ({type: REQUEST_BOOKS_PENDING})
-const setRequestBooksSuccess = books => ({type: REQUEST_BOOKS_SUCCESS, books})
-const setRequestBooksFail = error => ({type: REQUEST_BOOKS_FAILED, error})
+export const setRequestBooksPending = () => ({type: REQUEST_BOOKS_PENDING})
+export const setRequestBooksSuccess = books => ({type: REQUEST_BOOKS_SUCCESS, books})
+export const setRequestBooksFail = error => ({type: REQUEST_BOOKS_FAILED, error})
 export const setSortedBooks = books => ({type: BOOKS_SORT, books})
 export const setFilteredBooks = books => ({type: BOOKS_FILTER, books})
 export const clearFilteredBooks = () => ({type: CLEAR_FILTEREDBOOKS})
