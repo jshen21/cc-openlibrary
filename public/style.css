@@ -21,14 +21,17 @@ form div {
   display: inline-block;
 }
 
-/* classes */
-.header{
+/* ids */
+
+#header{
   margin: 0.1em 0.1em 0 0.1em;
-  font-family: "Serif";
+  font-family: 'Open Sans', arial,sans-serif;
   font-size: 3em;
   text-align: center;
   color: orange
 }
+
+/* classes */
 
 .center {
   display: flex;
