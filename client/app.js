@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   render() {
-    const { books, singleBook, sortedBooks, filteredBooks, isBooksPending, isSingleBookPending } = this.props
+    const { books, singleBook, sortedBooks, filteredBooks, error, isBooksPending, isSingleBookPending } = this.props
     return (
       <div>
         <h1 id='header'>Open Library</h1>
@@ -44,19 +44,23 @@ class App extends Component {
                           <BooksSort />
                           <BooksFilter />
                       </div>
+                      <div>
                       { 
-                        isBooksPending && <Loading />
+                        isBooksPending
+                          ? <Loading />
+                          : (
+                            sortedBooks.length
+                              ? <Books books={sortedBooks} pickBook={this.pickBook} />
+                              : (
+                                filteredBooks.length
+                                  ? <Books books={filteredBooks} pickBook={this.pickBook} />
+                                  : <Books books={books} error={error} pickBook={this.pickBook} />
+                              )
+
+                          )
                       }
-                      {
-                        sortedBooks.length && <Books books={sortedBooks} pickBook={this.pickBook} />
-                      }
-                      {
-                        (!sortedBooks.length && filteredBooks.length) && <Books books={filteredBooks} pickBook={this.pickBook} />
-                      }
-                      {
-                        (!sortedBooks.length && !filteredBooks.length) && <Books books={books} pickBook={this.pickBook} />
-                      }
-                    </div>
+                      </div>
+                    </div>      
                   )
               )
         }
@@ -72,6 +76,7 @@ const mapState = state => {
     singleBook: state.singleBook.singleBook,
     sortedBooks: state.books.sortedBooks,
     filteredBooks: state.books.filteredBooks,
+    error: state.books.error,
     isBooksPending: state.books.isBooksPending,
     isSingleBookPending: state.singleBook.isSingleBookPending
   }
