@@ -28,7 +28,7 @@ class App extends Component {
     const { books, singleBook, filteredBooks, isBooksPending, isSingleBookPending } = this.props
     return (
       <div>
-        <h1 className='header'>Open Library</h1>
+        <h1 id='header'>Open Library</h1>
         { 
           isSingleBookPending
             ? <Loading /> 
