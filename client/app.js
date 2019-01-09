@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   render() {
-    const { books, singleBook, filteredBooks, isBooksPending, isSingleBookPending } = this.props
+    const { books, singleBook, sortedBooks, filteredBooks, isBooksPending, isSingleBookPending } = this.props
     return (
       <div>
         <h1 id='header'>Open Library</h1>
@@ -48,9 +48,13 @@ class App extends Component {
                         isBooksPending && <Loading />
                       }
                       {
-                        filteredBooks.length 
-                        ? <Books books={filteredBooks} pickBook={this.pickBook} />
-                        : <Books books={books} pickBook={this.pickBook} /> 
+                        sortedBooks.length && <Books books={sortedBooks} pickBook={this.pickBook} />
+                      }
+                      {
+                        (!sortedBooks.length && filteredBooks.length) && <Books books={filteredBooks} pickBook={this.pickBook} />
+                      }
+                      {
+                        (!sortedBooks.length && !filteredBooks.length) && <Books books={books} pickBook={this.pickBook} />
                       }
                     </div>
                   )
@@ -66,6 +70,7 @@ const mapState = state => {
   return {
     books:state.books.books,
     singleBook: state.singleBook.singleBook,
+    sortedBooks: state.books.sortedBooks,
     filteredBooks: state.books.filteredBooks,
     isBooksPending: state.books.isBooksPending,
     isSingleBookPending: state.singleBook.isSingleBookPending

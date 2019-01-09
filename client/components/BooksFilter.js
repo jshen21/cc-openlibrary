@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setFilteredBooks, clearFilteredBooks } from '../store'
+import { setFilteredBooks, clearSortedBooks, clearFilteredBooks } from '../store'
 import { getPublishYear } from '../utils-client'
 
 class BooksSort extends Component {
@@ -20,6 +20,7 @@ class BooksSort extends Component {
             const books = [...this.props.books]
             //Clear the previous filteredBooks in the state before executing a filtering action
             this.props.clearFilteredBooks()
+            this.props.clearSortedBooks()
             if (this.state.filterSelect === 'All') return;
             const filteredBooks = books.filter(book => book.first_publish_year === Number(this.state.filterSelect))
             this.props.setFilteredBooks(filteredBooks)
@@ -62,6 +63,7 @@ const mapState = state => {
 const mapDispatch = dispatch => {
     return {
       setFilteredBooks: (books) => dispatch(setFilteredBooks(books)),
+      clearSortedBooks: () => dispatch(clearSortedBooks()),
       clearFilteredBooks: () => dispatch(clearFilteredBooks()) 
     }
 }
