@@ -21,6 +21,13 @@ form div {
   display: inline-block;
 }
 
+button {
+  border-radius: 10%;
+  background-color: orange;
+  font-weight: bold;
+  color: white;
+}
+
 /* ids */
 
 #header{
@@ -36,6 +43,10 @@ form div {
 .center {
   display: flex;
   justify-content: center;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .loader {
