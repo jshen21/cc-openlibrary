@@ -24,7 +24,8 @@ const defaultBooksState = {
     sortedBooks: [],
     sortSelect: '',
     filteredBooks: [],
-    isBooksPending: false
+    isBooksPending: false,
+    error: ''
 }
 
 /**
@@ -49,7 +50,8 @@ export const requestBooks = (searchSelect, searchInput) => async dispatch => {
   try {
     const data = await axios.get(`/api/books?searchSelect=${searchSelect}&searchInput=${searchInput}`)
     const books = data.data.filter(book => checkBookId(book) !== false )
-    dispatch(setRequestBooksSuccess(books))
+    if (books.length === 0) dispatch(setRequestBooksFail('Not Found'))
+    else dispatch(setRequestBooksSuccess(books))
   } catch (error) {
     dispatch(setRequestBooksFail(error))
   }
@@ -66,7 +68,7 @@ export default function(state = defaultBooksState, action) {
     case REQUEST_BOOKS_SUCCESS:
         return {...state, books: action.books, isBooksPending: false}
     case REQUEST_BOOKS_FAILED:
-        return {...state, error: action.error}
+        return {...state, error: action.error, isBooksPending: false}
     case SET_SORTSELECT:
         return {...state, sortSelect: action.sortSelect}
     case BOOKS_SORT:
