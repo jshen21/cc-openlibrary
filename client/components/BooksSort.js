@@ -9,15 +9,19 @@ class BooksSort extends Component {
         this.handleChange = this.handleChange.bind(this)
     }
 
-    handleChange (event) {
-        //Update state whenever sortSelect changes
-        this.props.setSortSelect(event.target.value)
-        //Make a copy of the books for sorting to avoid mutating the state
-        const books = this.props.filteredBooks.length? [...this.props.filteredBooks]:[...this.props.books]
-        const sortSelect = this.props.sortSelect
-        //Sort books according to sortSelect at the state in descending order
-        const sortedBooks = books.sort((a, b) => b[sortSelect] - a[sortSelect])
-        this.props.setSortedBooks(sortedBooks)
+    async handleChange (event) {
+        try {
+            //Update state in Redux store whenever sortSelect changes, action creator call is asynchronous
+            await this.props.setSortSelect(event.target.value)
+            //Make a copy of the books for sorting to avoid mutating the state
+            const books = this.props.filteredBooks.length? [...this.props.filteredBooks]:[...this.props.books]
+            const sortSelect = this.props.sortSelect
+            //Sort books according to sortSelect at the state in descending order
+            const sortedBooks = books.sort((a, b) => b[sortSelect] - a[sortSelect])
+            this.props.setSortedBooks(sortedBooks)
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     render () {

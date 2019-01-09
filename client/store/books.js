@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { checkBookId } from '../utils-client'
 
 
 /**
@@ -47,7 +48,8 @@ export const requestBooks = (searchSelect, searchInput) => async dispatch => {
     dispatch(setRequestBooksPending())
   try {
     const data = await axios.get(`/api/books?searchSelect=${searchSelect}&searchInput=${searchInput}`)
-    dispatch(setRequestBooksSuccess(data.data))
+    const books = data.data.filter(book => checkBookId(book) !== false )
+    dispatch(setRequestBooksSuccess(books))
   } catch (error) {
     dispatch(setRequestBooksFail(error))
   }
