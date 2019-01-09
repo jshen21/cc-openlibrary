@@ -9,7 +9,7 @@ const SingleBook = ({ singleBook, clearBook }) => {
     return (
         <div className='center'>
             <nav>
-                <span onClick={event => clearBook(event)}>Back</span>
+                <button className='pointer' onClick={event => clearBook(event)}>Back</button>
             </nav>
             <Card>
                 <Image alt='Book cover image is not available' src={`http://covers.openlibrary.org/b/${bookId}-L.jpg?`} />
