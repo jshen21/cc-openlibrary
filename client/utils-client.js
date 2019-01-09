@@ -11,6 +11,8 @@ export const checkBookId = (book) => {
     return false
 }
 
+//The argument bookId in this function is coming from the above function checkBookId, 
+//and it's only called when the checkBookId function returns truthy value
 export const convertBookcoverId = (bookId) => {  
     const typeId = bookId.toLowerCase().slice(0, 4)
     const number = bookId.split(':')[1]

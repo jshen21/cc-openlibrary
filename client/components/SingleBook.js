@@ -5,6 +5,7 @@ import { checkBookId, convertBookcoverId } from '../utils-client'
 
 
 const SingleBook = ({ singleBook, clearBook }) => {
+    //checkBookId edge cases (returning falsy value) have been considered when fetching the data
     const bookId = convertBookcoverId(checkBookId(singleBook))
     return (
         <div className='center'>

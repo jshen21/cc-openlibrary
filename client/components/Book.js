@@ -5,9 +5,7 @@ import { checkBookId } from '../utils-client'
 const Book = ({ book, pickBook }) => {
     return (
         <Card 
-            onClick={() => {(pickBook && checkBookId(book)) 
-                ? pickBook(checkBookId(book))
-                : alert('Details about this book can not be found!')}}>
+            onClick={() => pickBook && pickBook(checkBookId(book))}>
             <Card.Content>           
                 <Card.Header>{book.title}</Card.Header>
                 <Card.Meta>by {book.author_name}</Card.Meta>
