@@ -1,33 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setSortedBooks } from '../store'
+import { setSortSelect, setSortedBooks } from '../store'
 
 class BooksSort extends Component {
     constructor () {
-        super()
-        this.state = {sortSelect: ''}
-        
+        super() 
         // This binding is necessary to make `this` work in the callback
         this.handleChange = this.handleChange.bind(this)
     }
 
-    async handleChange (event) {
-        try {
-            //Update component state whenever sortSelect changes, setState is asynchronous
-            await this.setState({sortSelect: event.target.value})
-            //Make a copy of the books for sorting to avoid mutating the state
-            const books = [...this.props.books]
-            const sortSelect = this.state.sortSelect
-            //Sort books according to sortSelect at the state in descending order
-            const sortedBooks = books.sort((a, b) => b[sortSelect] - a[sortSelect])
-            this.props.setSortedBooks(sortedBooks)
-        } catch (error) {
-            console.log(error)
-        }
+    handleChange (event) {
+        //Update state whenever sortSelect changes
+        this.props.setSortSelect(event.target.value)
+        //Make a copy of the books for sorting to avoid mutating the state
+        const books = this.props.filteredBooks.length? [...this.props.filteredBooks]:[...this.props.books]
+        const sortSelect = this.props.sortSelect
+        //Sort books according to sortSelect at the state in descending order
+        const sortedBooks = books.sort((a, b) => b[sortSelect] - a[sortSelect])
+        this.props.setSortedBooks(sortedBooks)
     }
 
     render () {
-        const { sortSelect } = this.state
+        const { sortSelect } = this.props
         return (
             <form>
                 <label>
@@ -45,13 +39,17 @@ class BooksSort extends Component {
 
 const mapState = state => {
     return {
-        books: state.books.books
+        books: state.books.books,
+        sortedBooks: state.books.sortedBooks,
+        sortSelect: state.books.sortSelect,
+        filteredBooks: state.books.filteredBooks
     }
 }
 
 const mapDispatch = dispatch => {
     return {
-      setSortedBooks: (books) => dispatch(setSortedBooks(books)) 
+      setSortedBooks: (books) => dispatch(setSortedBooks(books)),
+      setSortSelect: (sortSelect) => dispatch(setSortSelect(sortSelect))
     }
 }
 
