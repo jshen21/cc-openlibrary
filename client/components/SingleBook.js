@@ -18,7 +18,7 @@ const SingleBook = ({ singleBook, clearBook }) => {
             </div>
             <div className='center'>
                 <Card>
-                    <Image alt='Book cover image is not available' src={`http://covers.openlibrary.org/b/${bookId}-L.jpg?`} />
+                    <img src={`http://covers.openlibrary.org/b/${bookId}-L.jpg?default=false`} />
                     <Card.Content>
                         <Card.Header>{singleBook.title}</Card.Header>
                         <Card.Meta>
