@@ -27,15 +27,15 @@ class BooksSort extends Component {
     render () {
         const { sortSelect } = this.props
         return (
-            <form>
-                <label>
-                    Sort by
-                    <select name='booksSort' value={sortSelect} onChange={this.handleChange}>
-                        <option value="">--</option>
+            <form className='br3 mt1 pa2 center mr1'>
+                {/* <label> */}
+                    {/* Sort by */}
+                    <select  className='pt0 pa2 ba shadow-5 b-gray selectWidth' name='booksSort' value={sortSelect} onChange={this.handleChange}>
+                        <option className='selectPlaceholder' value="" disabled hidden>Sort by ...</option>
                         <option value="edition_count">Number of Editions</option>
                         <option value="first_publish_year">Published Year</option>
                     </select>
-                </label>
+                {/* </label> */}
             </form>
         )
     }

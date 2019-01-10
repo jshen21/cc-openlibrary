@@ -5,6 +5,10 @@ body {
   color: #fefdfe;
 }
 
+input {
+  background-color: #fefdfe;
+}
+
 a {
   text-decoration: none;
 }
@@ -25,13 +29,11 @@ form div {
 
 button {
   border-radius: 10%;
-  background-color: orange;
+  background-color: darkorange;
   font-weight: bold;
-  color: white;
+  color: #fefdfe;
+  cursor: pointer;
 }
-
-
-
 
 /* ids */
 
@@ -54,15 +56,26 @@ button {
   cursor: pointer;
 }
 
+.selectWidth {
+  width:10em;
+}
+
+.navRight {
+  display: flex;
+  justify-content: flex-end;
+  width: 290px;
+}
+
 .loader {
   border: 16px solid #f3f3f3;
-  border-top: 16px solid orange;
+  border-top: 16px solid darkorange;
   border-radius: 50%;
   width: 120px;
   height: 120px;
   animation: spin 1s linear infinite;
   margin-bottom: 15px;
 }
+
 
 @keyframes spin {
   0% { transform: rotate(0deg); }

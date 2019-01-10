@@ -28,7 +28,7 @@ class App extends Component {
     const { books, singleBook, sortedBooks, filteredBooks, error, isBooksPending, isSingleBookPending } = this.props
     return (
       <div>
-        <h1 id='header'>Open Library</h1>
+        <h1 className='center' id='header'>Open Library</h1>
         { 
           isSingleBookPending
             ? <Loading /> 
@@ -37,12 +37,12 @@ class App extends Component {
                 ? <SingleBook singleBook={singleBook} clearBook={this.clearBook} />
                 : (
                     <div>
+                      <SearchBox />
                       <div className='center'>
-                        <SearchBox />
-                      </div>
-                      <div className='center'>
+                        <div className='center'>
                           <BooksSort />
                           <BooksFilter />
+                        </div>
                       </div>
                       <div>
                       { 
@@ -56,7 +56,6 @@ class App extends Component {
                                   ? <Books books={filteredBooks} pickBook={this.pickBook} />
                                   : <Books books={books} error={error} pickBook={this.pickBook} />
                               )
-
                           )
                       }
                       </div>

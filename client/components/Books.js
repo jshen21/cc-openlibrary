@@ -4,9 +4,9 @@ import Book from './Book'
 
 const Books = ({ books, error, pickBook }) => {
     return (
-        <div>
+        <div className='mt4'>
             {error? 
-                <p className='center'>Oooops...No results can be found...</p> :
+                <h3 className='center'>Oooops...No results can be found...</h3> :
                 <Card.Group className='center'>
                     {
                         books.filter(book=> book.author_name).map((book, i) =>
