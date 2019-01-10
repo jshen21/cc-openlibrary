@@ -11,12 +11,20 @@ export const checkBookId = (book) => {
     return false
 }
 
-//The argument bookId in this function is coming from the above function checkBookId, 
-//and it's only called when the checkBookId function returns truthy value
-export const convertBookcoverId = (bookId) => {  
-    const typeId = bookId.toLowerCase().slice(0, 4)
-    const number = bookId.split(':')[1]
-    return bookId? `${typeId}/${number}` : false
+export const checkBookCoverId = (book) => {
+    const typeId = ['isbn', 'oclc', 'lccn', 'olid']
+    const keys = Object.keys(book)
+    for (let i = 0; i < keys.length; i++) {
+        for(let j = 0; j < typeId.length; j++) {
+            if(keys[i].includes(typeId[j])) {
+                return `${keys[i].slice(0,4)}/${book[keys[i]][0]}`
+            }
+        }
+    }
+    if (book.cover) return `id/${book.cover[0]}`
+    if (book.identifiers.goodreads) return `goodreads/${book.identifiers.goodreads[0]}`
+    if (book.identifiers.librarything) return `librarything/${book.identifiers.librarything}`
+    return false
 }
 
 export const getPublishYear = (books) => {
