@@ -32,19 +32,20 @@ export class SearchBox extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <select name='searchSelect' value={searchSelect} onChange={this.handleChange}>
-                        <option value="q">All</option>
-                        <option value="title">Title</option>
-                        <option value="author">Author</option>
-                    </select>
-                    <div>
-                        <input 
+                    <div className='br3 mt1 mb0 pa2 center'>
+                        <select className='pt0 pa2 ba shadow-5 b-gray' name='searchSelect' value={searchSelect} onChange={this.handleChange}>
+                            <option value="q">All</option>
+                            <option value="title">Title</option>
+                            <option value="author">Author</option>
+                        </select>
+                        <input
+                            className='pa2 ba shadow-5 b-gray' 
                             type='text' 
                             name='searchInput' 
                             value={searchInput} 
                             onChange={this.handleChange}
                             placeholder='Search books...' />  
-                        <button type="submit">Search</button>
+                        <button className='shadow-5 b-gray pa2 ba grow link' type="submit">Search</button>
                     </div>
                 </form>
             </div>

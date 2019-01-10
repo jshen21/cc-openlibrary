@@ -34,10 +34,11 @@ class BooksSort extends Component {
         const { filterSelect } = this.state
         const publishYears = getPublishYear(books)
         return (
-            <form>
-                <label>
-                    Filter by
-                    <select name='booksFilter' value={filterSelect} onChange={this.handleChange}>
+            <form className='br3 mt1 pa2 center ml1'>
+                {/* <label>
+                    Filter by */}
+                    <select  className='pt0 pa2 ba shadow-5 b-gray selectWidth' name='booksFilter' value={filterSelect} onChange={this.handleChange}>
+                        <option value="" disabled hidden>Filter By ...</option>
                         <option value='All'>All</option>
                         {
                             publishYears.map((year, i) => {
@@ -47,7 +48,7 @@ class BooksSort extends Component {
                             })
                         }
                     </select>
-                </label>
+                {/* </label> */}
             </form>
         )
     }
