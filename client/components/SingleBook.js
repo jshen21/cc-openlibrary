@@ -26,8 +26,16 @@ const SingleBook = ({ singleBook, clearBook }) => {
                             <p>{singleBook.subtitle && `Subtitle: ${singleBook.subtitle}` || ''}</p>
                             <p>{singleBook.publishers && `Publishers: ${singleBook.publishers.join(', ')}` || ''}</p>
                             <p>{singleBook.publish_date && `Publication Date: ${singleBook.publish_date}` || ''}</p>
+                            <p>
+                                {
+                                    !singleBook.description
+                                    ? 'There\'s no description for this book yet.'
+                                    : singleBook.description.value
+                                      ? `Description: ${singleBook.description.value}` 
+                                      : 'There\'s no description for this book yet.'
+                                }
+                            </p>
                         </Card.Meta>
-                        <Card.Description>{singleBook.description || 'There\'s no description for this book yet.'}</Card.Description>
                     </Card.Content>
                 </Card>
             </div>
