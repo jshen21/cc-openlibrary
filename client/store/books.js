@@ -45,7 +45,9 @@ export const resetState = () => ({type: RESET_STATE})
  * THUNK CREATORS
  */
 export const requestBooks = (searchSelect, searchInput) => async dispatch => {
+    //Make sure the state is reset to default status before doing a new search
     dispatch(resetState())
+    //When waiting for results to come back, update isPending to be true in order to render loading screen
     dispatch(setRequestBooksPending())
   try {
     const data = await axios.get(`/api/books?searchSelect=${searchSelect}&searchInput=${searchInput}`)

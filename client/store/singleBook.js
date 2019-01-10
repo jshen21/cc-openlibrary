@@ -30,6 +30,7 @@ export const clearBook = () => ({type: CLEAR_BOOK})
  * THUNK CREATORS
  */
 export const requestBook = (bookId) => async dispatch => {
+    //When waiting for results to come back, update isPending to be true in order to render loading screen
     dispatch(setRequestBookPending())
   try {
     const data = await axios.get(`/api/books/${bookId}`)
