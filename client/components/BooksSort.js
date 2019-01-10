@@ -16,7 +16,7 @@ class BooksSort extends Component {
             //Make a copy of the books for sorting to avoid mutating the state
             const books = this.props.filteredBooks.length? [...this.props.filteredBooks]:[...this.props.books]
             const sortSelect = this.props.sortSelect
-            //Sort books according to sortSelect at the state in descending order
+            //Sort books according to sortSelect value at the state in descending order
             const sortedBooks = books.sort((a, b) => b[sortSelect] - a[sortSelect])
             this.props.setSortedBooks(sortedBooks)
         } catch (error) {
@@ -28,14 +28,15 @@ class BooksSort extends Component {
         const { sortSelect } = this.props
         return (
             <form className='br3 mt1 pa2 center mr1'>
-                {/* <label> */}
-                    {/* Sort by */}
-                    <select  className='pt0 pa2 ba shadow-5 b-gray selectWidth' name='booksSort' value={sortSelect} onChange={this.handleChange}>
+                <select  
+                    className='pt0 pa2 ba shadow-5 b-gray selectWidth' 
+                    name='booksSort' 
+                    value={sortSelect} 
+                    onChange={this.handleChange}>
                         <option className='selectPlaceholder' value="" disabled hidden>Sort by ...</option>
                         <option value="edition_count">Number of Editions</option>
                         <option value="first_publish_year">Published Year</option>
-                    </select>
-                {/* </label> */}
+                </select>
             </form>
         )
     }
@@ -57,4 +58,6 @@ const mapDispatch = dispatch => {
     }
 }
 
+//connect is a higher-order function that returns a higher-order component
+//that is connected to the Redux store
 export default connect (mapState, mapDispatch)(BooksSort)

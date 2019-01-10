@@ -20,6 +20,8 @@ const SingleBook = ({ singleBook, clearBook }) => {
                     <Card.Content>
                         <Card.Header>{singleBook.title}</Card.Header>
                         {
+                            //If bookId validation check passes, it will make a request to get the cover.
+                            //It returns a 404 if the cover cannot be found. 
                             bookId && <Image src={`http://covers.openlibrary.org/b/${bookId}-L.jpg?default=false`} />
                         }
                         <Card.Meta>
@@ -29,6 +31,8 @@ const SingleBook = ({ singleBook, clearBook }) => {
                             <p>{singleBook.publish_date && `Publication Date: ${singleBook.publish_date}` || ''}</p>
                             <p>
                                 {
+                                    //Some books don't have description as object key,
+                                    //so it requires two-step validations to avoid error message. 
                                     !singleBook.description
                                     ? 'There\'s no description for this book yet.'
                                     : singleBook.description.value

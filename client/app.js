@@ -12,6 +12,8 @@ import { requestBook, clearBook } from './store'
 class App extends Component {
   constructor () {
     super()
+
+    // This binding is necessary to make `this` work in the callback
     this.pickBook = this.pickBook.bind(this)
     this.clearBook = this.clearBook.bind(this)
   }
@@ -46,17 +48,17 @@ class App extends Component {
                       </div>
                       <div>
                       { 
+                        //There are 3-step validations here in order to render the right component based on
+                        //the state status
                         isBooksPending
                           ? <Loading />
-                          : (
-                            sortedBooks.length
+                          : (sortedBooks.length
                               ? <Books books={sortedBooks} pickBook={this.pickBook} />
-                              : (
-                                filteredBooks.length
+                              : (filteredBooks.length
                                   ? <Books books={filteredBooks} pickBook={this.pickBook} />
                                   : <Books books={books} error={error} pickBook={this.pickBook} />
-                              )
-                          )
+                                )
+                            )
                       }
                       </div>
                     </div>      
@@ -88,5 +90,7 @@ const mapDispatch = dispatch => {
   }
 }
 
+//connect is a higher-order function that returns a higher-order component
+//that is connected to the Redux store
 export default connect(mapState, mapDispatch)(App)
 

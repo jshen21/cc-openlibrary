@@ -18,7 +18,7 @@ class BooksSort extends Component {
             await this.setState({filterSelect: event.target.value})
             //Make a copy of the books for sorting to avoid mutating the state
             const books = [...this.props.books]
-            //Clear the previous filteredBooks in the state before executing a filtering action
+            //Clear the previous filteredBooks and sortedBooks in the state before executing a filtering action
             this.props.clearFilteredBooks()
             this.props.clearSortedBooks()
             if (this.state.filterSelect === 'All') return;
@@ -35,20 +35,21 @@ class BooksSort extends Component {
         const publishYears = getPublishYear(books)
         return (
             <form className='br3 mt1 pa2 center ml1'>
-                {/* <label>
-                    Filter by */}
-                    <select  className='pt0 pa2 ba shadow-5 b-gray selectWidth' name='booksFilter' value={filterSelect} onChange={this.handleChange}>
-                        <option value="" disabled hidden>Filter By ...</option>
-                        <option value='All'>All</option>
-                        {
-                            publishYears.map((year, i) => {
-                                return (
-                                    <option key={i} value={year}>Year {year}</option>
-                                )
-                            })
-                        }
+                    <select  
+                        className='pt0 pa2 ba shadow-5 b-gray selectWidth' 
+                        name='booksFilter' 
+                        value={filterSelect} 
+                        onChange={this.handleChange}>
+                            <option value="" disabled hidden>Filter By ...</option>
+                            <option value='All'>All</option>
+                            {
+                                publishYears.map((year, i) => {
+                                    return (
+                                        <option key={i} value={year}>Year {year}</option>
+                                    )
+                                })
+                            }
                     </select>
-                {/* </label> */}
             </form>
         )
     }
@@ -69,4 +70,6 @@ const mapDispatch = dispatch => {
     }
 }
 
+//connect is a higher-order function that returns a higher-order component
+//that is connected to the Redux store
 export default connect (mapState, mapDispatch)(BooksSort)

@@ -45,11 +45,19 @@ export const resetState = () => ({type: RESET_STATE})
  * THUNK CREATORS
  */
 export const requestBooks = (searchSelect, searchInput) => async dispatch => {
+    //Make sure the state is reset to default status before doing a new search
     dispatch(resetState())
+    //When waiting for results to come back, update isPending to be true in order to render loading screen
     dispatch(setRequestBooksPending())
   try {
     const data = await axios.get(`/api/books?searchSelect=${searchSelect}&searchInput=${searchInput}`)
+    //BookID (ISBN/OCLC/LCCN/OLID) must be available in order to request singleBook details
+    //This filtering is to clearn up the data and exclude those results without BookID information
+    //before rendering the search results
     const books = data.data.filter(book => checkBookId(book) !== false )
+    //It is a 304 on the server if no results are found, so I make validation check at this step
+    //and pass down error message as props to Books component in order to render the error message 
+    //when there is no search results.
     if (books.length === 0) dispatch(setRequestBooksFail('Not Found'))
     else dispatch(setRequestBooksSuccess(books))
   } catch (error) {
