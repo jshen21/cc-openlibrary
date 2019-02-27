@@ -15,9 +15,9 @@ export class SearchBox extends Component {
     }
 
     handleChange (event) {
-        //There are two controlled elements in this componnnet. For DRY purposes, 
-        //I add a name attricute to each element and let the handler function chooses what to do 
-        //based on the value of event.target.name
+        /* There are two controlled elements in this componnnet. For DRY purposes, 
+        I add a name attricute to each element and let the handler function chooses what to do 
+        based on the value of event.target.name */
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -67,6 +67,6 @@ const mapDispatch = dispatch => {
     }
 }
 
-//connect is a higher-order function that returns a higher-order component
-//that is connected to the Redux store
+/* connect is a higher-order function that returns a higher-order component
+that is connected to the Redux store */
 export default connect (null, mapDispatch)(SearchBox)

@@ -69,6 +69,6 @@ const mapDispatch = dispatch => {
     }
 }
 
-//connect is a higher-order function that returns a higher-order component
-//that is connected to the Redux store
+/* connect is a higher-order function that returns a higher-order component
+that is connected to the Redux store */
 export default connect (mapState, mapDispatch)(BooksSort)

@@ -51,13 +51,13 @@ export const requestBooks = (searchSelect, searchInput) => async dispatch => {
     dispatch(setRequestBooksPending())
   try {
     const data = await axios.get(`/api/books?searchSelect=${searchSelect}&searchInput=${searchInput}`)
-    //BookID (ISBN/OCLC/LCCN/OLID) must be available in order to request singleBook details
-    //This filtering is to clearn up the data and exclude those results without BookID information
-    //before rendering the search results
+    /* BookID (ISBN/OCLC/LCCN/OLID) must be available in order to request singleBook details
+    This filtering is to clearn up the data and exclude those results without BookID information
+    before rendering the search results */
     const books = data.data.filter(book => checkBookId(book) !== false )
-    //It is a 304 on the server if no results are found, so I make validation check at this step
-    //and pass down error message as props to Books component in order to render the error message 
-    //when there is no search results.
+    /* It is a 304 on the server if no results are found, so I make validation check at this step
+    and pass down error message as props to Books component in order to render the error message 
+    when there is no search results. */
     if (books.length === 0) dispatch(setRequestBooksFail('Not Found'))
     else dispatch(setRequestBooksSuccess(books))
   } catch (error) {

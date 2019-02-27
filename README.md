@@ -1,4 +1,4 @@
-# Open Library Books API Code Challenge
+# Open Library Books API
 
 ## Overview
 
