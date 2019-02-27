@@ -1,10 +1,8 @@
 # Open Library Books API Code Challenge
 
-This app was created in response to a code challenge described at https://gist.github.com/gooptaa/b5bf13cbd4c7b00bfacd7d0335423cb2. It is deployed at https://cc-openlibrary.herokuapp.com/.
-
 ## Overview
 
-The app runs on a Node/Express server and is powered by React and Redux on the front end. It allows the user to made AJAX requests to the Open Library Books API based on search input, and get the data to generate the React components.
+The app runs on a Node/Express server and is powered by React and Redux on the front end. It allows the user to made AJAX requests to the Open Library Books API based on search input, and get the data to generate the React components. It is deployed at https://cc-openlibrary.herokuapp.com/.
 
 ## Funtionalities/Features
 
@@ -16,12 +14,6 @@ The app runs on a Node/Express server and is powered by React and Redux on the f
     2. Use modularized structure: create "Books" component to render books, sorted books and filtered books conditionally; create "Loading" screen when fetching "Books" and "SingleBook".
 5. Readability: write documentation and comments to increase code readability and maintainability.
 
-## Areas for Improvements
-
-1. Front-end routing: due to limited time and the priorities I allocated to elsewhere in the project, I have not yet incorporated front-end routing via React-Router. This will be the next-step to render different components using react routes, and allow the user to "go back" and "go forward" easily. 
-2. More robust testing: I wrote some React and Redux unit tests, but as a next-step, I would like to include more robust React and Redux testing (such as integration tests) and to add server testing and utility testing.
-3. Continuous Integration using Travis.
-
 
 ## To run this locally:
 1. npm install 
@@ -29,5 +21,3 @@ The app runs on a Node/Express server and is powered by React and Redux on the f
 
 ## To run tests:
 1. npm test
-
-Thank you!

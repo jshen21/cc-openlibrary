@@ -16,8 +16,7 @@ class BooksSort extends Component {
         try {
             //Update component state whenever filterSelect changes, setState is asynchronous
             await this.setState({filterSelect: event.target.value})
-            //Make a copy of the books for sorting to avoid mutating the state
-            const books = [...this.props.books]
+            const books = this.props.books
             //Clear the previous filteredBooks and sortedBooks in the state before executing a filtering action
             this.props.clearFilteredBooks()
             this.props.clearSortedBooks()

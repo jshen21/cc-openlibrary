@@ -4,7 +4,7 @@ import { checkBookId } from '../utils-client'
 
 const Book = ({ book, pickBook }) => {
     return (
-        <Card 
+        <Card
             onClick={() => pickBook && pickBook(checkBookId(book))}>
             <Card.Content>           
                 <Card.Header>{book.title}</Card.Header>
