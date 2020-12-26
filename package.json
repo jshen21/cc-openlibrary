@@ -33,6 +33,7 @@
     ]
   },
   "author": "Jinyan Shen",
+  "proxy": "http://cc-openlibrary.herokuapp.com/",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.15.3",
